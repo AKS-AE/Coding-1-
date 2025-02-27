@@ -1,0 +1,249 @@
+class Customer:
+    """Represents a customer in the car modification delivery system."""
+
+
+    def __init__(self, customerID, name, email, password, address):
+        """Initializes the customer with their details."""
+        self.__customerID = customerID
+        self.__name = name
+        self.__email = email
+        self.__password = password
+        self.__address = address
+
+
+    # Getters
+    def getCustomerID(self):
+        return self.__customerID
+
+
+    def getName(self):
+        return self.__name
+
+
+    def getEmail(self):
+        return self.__email
+
+
+    def getAddress(self):
+        return self.__address
+
+
+    # Setters
+    def setCustomerID(self, customerID):
+        self.__customerID = customerID
+
+
+    def setName(self, name):
+        self.__name = name
+
+
+    def setEmail(self, email):
+        self.__email = email
+
+
+    def setAddress(self, address):
+        self.__address = address
+
+
+    # Functional Methods
+    def displayCustomerDetails(self):
+        """Displays customer details in a formatted string."""
+        return (f"Customer ID: {self.__customerID}\n"
+                f"Customer Name: {self.__name}\n"
+                f"Email: {self.__email}\n"
+                f"Address: {self.__address}\n")
+
+
+
+
+class Item:
+    """Represents a car modification item available for ordering."""
+
+
+    def __init__(self, itemID, name, price, stock):
+        """Initializes item details."""
+        self.__itemID = itemID
+        self.__name = name
+        self.__price = price
+        self.__stock = stock
+
+
+    # Getters
+    def getItemID(self):
+        return self.__itemID
+
+
+    def getName(self):
+        return self.__name
+
+
+    def getPrice(self):
+        return f"{self.__price} AED"
+
+
+    def getStock(self):
+        return self.__stock
+
+
+    # Setters
+    def setItemID(self, itemID):
+        self.__itemID = itemID
+
+
+    def setName(self, name):
+        self.__name = name
+
+
+    def setPrice(self, price):
+        self.__price = price
+
+
+    def setStock(self, stock):
+        self.__stock = stock
+
+
+    # Functional Methods
+    def displayItemDetails(self):
+        """Returns item details including the item ID as a formatted string."""
+        return (f"Item ID: {self.__itemID}\n"
+                f"Item Name: {self.__name}\n"
+                f"Price: {self.__price}\n"
+                f"Stock: {self.__stock}\n")
+
+
+
+
+class Delivery:
+    """Represents the delivery details of an order."""
+
+
+    def __init__(self, deliveryID, orderID, status, date, deliveryAddress):
+        """Initializes the delivery with its details."""
+        self.__deliveryID = deliveryID
+        self.__orderID = orderID
+        self.__status = status
+        self.__date = date
+        self.__deliveryAddress = deliveryAddress
+
+
+    # Getters
+    def getDeliveryID(self):
+        return self.__deliveryID
+
+
+    def getOrderID(self):
+        return self.__orderID
+
+
+    def getStatus(self):
+        return self.__status
+
+
+    def getDate(self):
+        return self.__date
+
+
+    def getDeliveryAddress(self):
+        return self.__deliveryAddress
+
+
+    # Functional Methods
+    def displayDeliveryDetails(self):
+        """Displays delivery details in a formatted string."""
+        return (f"Order ID: {self.__orderID}\n"
+                f"Order Status: {self.__status}\n"
+                f"Delivery Date: {self.__date}\n"
+                f"Delivery Address: {self.__deliveryAddress}\n")
+
+
+
+
+class Admin:
+    """Represents an admin managing orders and deliveries."""
+
+
+    def __init__(self, adminID, name, email, role):
+        """Initializes the admin with their details."""
+        self.__adminID = adminID
+        self.__name = name
+        self.__email = email
+        self.__role = role
+
+
+    def displayAdminDetails(self):
+        """Displays admin details in a formatted string."""
+        return (f"Admin ID: {self.__adminID}\n"
+                f"Admin Name: {self.__name}\n"
+                f"Email: {self.__email}\n"
+                f"Role: {self.__role}\n")
+
+
+
+
+class DeliveryStaff:
+    """Represents a delivery staff member responsible for deliveries."""
+
+
+    def __init__(self, staffID, name, contact, assignedOrders):
+        """Initializes delivery staff details."""
+        self.__staffID = staffID
+        self.__name = name
+        self.__contact = contact
+        self.__assignedOrders = assignedOrders
+
+
+    def displayStaffDetails(self):
+        """Displays delivery staff details in a formatted string."""
+        return (f"Staff ID: {self.__staffID}\n"
+                f"Delivery Staff: {self.__name}\n"
+                f"Phone: {self.__contact}\n"
+                f"Assigned Orders: {self.__assignedOrders}\n")
+
+
+
+
+# Creating Objects
+customer1 = Customer(1, "Zayed", "zayed@Gmail.com", "password123", "Abu Dhabi, UAE")
+customer2 = Customer(2, "Hamed", "hamed@Gmail.com", "pass456", "Dubai, UAE")
+
+
+order1 = Delivery(101, customer1.getCustomerID(), "Pending", "2025-03-10", "Abu Dhabi, UAE")
+order2 = Delivery(102, customer2.getCustomerID(), "Shipped", "2025-03-08", "Dubai, UAE")
+
+
+item1 = Item(1001, "Turbo Charger", 3500, 3)
+item2 = Item(1002, "Supercharger", 5000, 2)
+
+
+admin = Admin(5001, "Manea", "manea@Gmail.com", "Order Manager")
+
+
+staff1 = DeliveryStaff(7001, "Hamdan", "+971-50-1234567", [order1.getOrderID()])
+staff2 = DeliveryStaff(7002, "Rashed", "+971-50-7654321", [order2.getOrderID()])
+
+
+# Displaying Delivery Notes
+print("\n" + "=" * 70)
+print("DELIVERY NOTE - Customer 1")
+print("=" * 70)
+print(customer1.displayCustomerDetails())
+print("-" * 50)
+print(order1.displayDeliveryDetails())
+print(item1.displayItemDetails())
+print("-" * 50)
+print(staff1.displayStaffDetails())
+print(admin.displayAdminDetails())
+print("=" * 70)
+
+
+print("\n" + "=" * 70)
+print("DELIVERY NOTE - Customer 2")
+print("=" * 70)
+print(customer2.displayCustomerDetails())
+print("-" * 50)
+print(order2.displayDeliveryDetails())
+print(item2.displayItemDetails())
+print("-" * 50)
+print(staff2.displayStaffDetails())
+print(admin.displayAdminDetails())
+print("=" * 70)
